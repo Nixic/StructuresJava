@@ -12,7 +12,7 @@
 #### Singleton (Одиночка) - ограничивает создание одного экземпляра класса, обеспечивает доступ к его единственному объекту.
 #### Гарантирует, что у класса будет всего один экземпляр класса. 
 #### Предоставляет глобальную точку доступа к экземпляру данного класса.
-[Example Singleton here](src/main/java/patterns/creational/singleton/SingletonClass.java)
+[Example Singleton here](src/main/java/patterns/creational/singleton)
 #### Factory (Фабрика) - используется, когда у нас есть суперкласс с несколькими подклассами и на основе ввода, нам нужно вернуть один из подкласса.
 [Example Factory here](src/main/java/patterns/creational/factory/ShapeFactory.java)
 #### Abstract Factory (Абстрактная фабрика) - используем супер фабрику для создания фабрики, затем используем созданную фабрику для создания объектов.
