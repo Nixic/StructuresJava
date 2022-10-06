@@ -1,5 +1,14 @@
 package patterns.creational.singleton;
 
+/**
+ * This is first and very simple example of singleton.
+ *
+ * Pluses: Lazy initialization
+ *
+ * Minuses: Not thread safe
+ *
+ * !!! Use it if you don't need multithreading
+ */
 public class SingletonClass {
 
     private static SingletonClass INSTANCE;
