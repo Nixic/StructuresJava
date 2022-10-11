@@ -8,8 +8,9 @@ import java.util.Random;
  */
 public class FloydAlgorithm {
 
-    private static final int NO_RELATION_FLAG = -1;
     private static final int MATRIX_SIZE = 4;
+    private static final int NO_RELATION_FLAG = -1;
+    private static final int WEIGHT_LIMIT = 1;
 
     public static void main(String[] args) {
         int[][] weightMatrix = getWeightMatrix(MATRIX_SIZE);
@@ -38,9 +39,9 @@ public class FloydAlgorithm {
                         if (r.nextInt() % 2 > 0) {
                             w[i][j] = NO_RELATION_FLAG; // -1
                         } else {
-                            int rndVal = r.nextInt(matrixSize +1);
+                            int rndVal = r.nextInt(matrixSize + WEIGHT_LIMIT);
                             while (rndVal == 0) {
-                                rndVal = r.nextInt(matrixSize + 1);
+                                rndVal = r.nextInt(matrixSize + WEIGHT_LIMIT);
                             }
                             w[i][j] = rndVal;
                         }
@@ -57,7 +58,7 @@ public class FloydAlgorithm {
         for (int i = 0; i < matrixSize; i++) {
             int[] ints = weightMatrix[i];
             for (int j = 0; j < ints.length; j++) {
-                if (weightMatrix[i][j] == NO_RELATION_FLAG) {
+                if (weightMatrix[i][j] == NO_RELATION_FLAG || i == j) {
                     h[i][j] = 0;
                 } else {
                     h[i][j] = j + 1;
