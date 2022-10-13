@@ -21,6 +21,7 @@ public class OverloadingExample {
     class Parent {
     }
 
+    // remove "extends Parent" and get ambiguous method call up in the code.
     class Child extends Parent {
     }
 

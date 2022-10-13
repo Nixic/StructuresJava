@@ -5,12 +5,14 @@ import java.util.Random;
 /**
  * Floyd's algorithm example.
  * Алгоритм Флойда, пример.
+ TODO add javadoc!
  */
+
 public class FloydAlgorithm {
 
-    private static final int MATRIX_SIZE = 4;
+    private static final int MATRIX_SIZE = 5;
     private static final int NO_RELATION_FLAG = -1;
-    private static final int WEIGHT_LIMIT = 1;
+    private static final int WEIGHT_SUPPLEMENT_LIMIT = 10;
 
     public static void main(String[] args) {
         int[][] weightMatrix = getWeightMatrix(MATRIX_SIZE);
@@ -19,8 +21,9 @@ public class FloydAlgorithm {
         int[][] historyMatrix = getHistoryMatrix(weightMatrix);
         printMatrix("History", historyMatrix);
 
-        int[][] floydAlgorithm = floydAlgorithmRun(weightMatrix, historyMatrix);
-        printMatrix("Weight after floyd", floydAlgorithm);
+        int[][] historyMatrixAfterFloydAlgorithm = floydAlgorithmRun(weightMatrix, historyMatrix);
+        printMatrix("Weight after floyd", historyMatrixAfterFloydAlgorithm);
+        printPaths(historyMatrixAfterFloydAlgorithm);
     }
 
     private static int[][] getWeightMatrix(int matrixSize) {
@@ -37,11 +40,12 @@ public class FloydAlgorithm {
                         w[i][j] = w[j][i];
                     } else {
                         if (r.nextInt() % 2 > 0) {
-                            w[i][j] = NO_RELATION_FLAG; // -1
+//                            w[i][j] = NO_RELATION_FLAG; // -1
+                            w[i][j] = r.nextInt(matrixSize + WEIGHT_SUPPLEMENT_LIMIT);
                         } else {
-                            int rndVal = r.nextInt(matrixSize + WEIGHT_LIMIT);
+                            int rndVal = r.nextInt(matrixSize + WEIGHT_SUPPLEMENT_LIMIT);
                             while (rndVal == 0) {
-                                rndVal = r.nextInt(matrixSize + WEIGHT_LIMIT);
+                                rndVal = r.nextInt(matrixSize + WEIGHT_SUPPLEMENT_LIMIT);
                             }
                             w[i][j] = rndVal;
                         }
@@ -99,6 +103,23 @@ public class FloydAlgorithm {
             }
         }
         return h;
+    }
+
+    private static void printPaths(int[][] h) {
+        // TODO need to finish(and fix) printing of paths
+        for (int i = 0; i < h.length; i++) {
+            int[] points = h[i];
+            for (int j = 0; j < points.length; j++) {
+                int point = points[j];
+                if (h[i][j] != 0 && h[i][j] != j + 1) {
+                    System.out.printf("From %s to %s via %s\n", i + 1, j + 1, h[i][j]);
+                } else {
+                    if (i != j) {
+                        System.out.printf("Direct way from %s to %s\n", i + 1, j + 1);
+                    }
+                }
+            }
+        }
     }
 
 }
