@@ -61,13 +61,13 @@ public class SplittingCardDeck {
         while (openCardIndexes.size() < number) {
             openCardIndexes.add(new Random().nextInt(cardList.size()));
         }
-        for (Integer indexOfOpenCar : openCardIndexes) {
-            cardList.get(indexOfOpenCar).setStatus(Status.OPEN);
+        for (Integer indexOfOpenCard : openCardIndexes) {
+            cardList.get(indexOfOpenCard).setStatus(Status.OPEN);
         }
     }
 
     private static void splitCardDeckInTwo(List<Card> cardDeck, int countOfOpenCards) {
-        Collections.shuffle(cardDeck);
+        Collections.shuffle(cardDeck); // Yeee! I need more shuffle!!!
         List<Card> firstNElementsList = cardDeck.stream().limit(countOfOpenCards).collect(Collectors.toList());
         cardDeck.removeAll(firstNElementsList);
         for (Card card : firstNElementsList) {
