@@ -125,7 +125,7 @@ public class SplittingCardDeck {
         JACK("Jack"),
         QUEEN("Queen"),
         KING("King"),
-        ACE("ace");
+        ACE("Ace");
         private final String name;
 
         @Override
